@@ -69,19 +69,6 @@ cat << EOF
 
 EOF
 
-(sleep 5) & spin \
-	"" \
-	"Waiting for task" \
-	"task finished" \
-	"error"
-
-
-# (sleep 5 & alezh) & spin \
-#	"" \
-#	"Waiting for task" \
-#	"task finished" \
-#	"error"
-
 logfile=$(pwd)/env-init.log
 errfile=$(pwd)/env-init.error.log
 now="$(date '+%Y/%m/%d %H:%M:%S')"
@@ -91,9 +78,6 @@ touch $logfile
 touch $errfile
 printf "$firstline\n" > $logfile
 printf "$firstline\n" > $errfile
-
-echo ""
-exit 0
 
 
 # -- General use apt packages
