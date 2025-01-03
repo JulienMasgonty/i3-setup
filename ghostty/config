@@ -1,0 +1,13 @@
+gtk-tabs-location = hidden
+scrollback-limit = 10_000
+window-theme = ghostty
+clipboard-read = allow
+clipboard-paste-protection = false
+window-decoration = false
+#shell-integration = zsh  
+font-family = "Geist Mono"
+font-size = 14
+font-feature = -liga
+window-padding-color = background
+theme = vesper
+
