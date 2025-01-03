@@ -43,7 +43,6 @@ spin() {
 		exit 1
 	fi
 
-	echo "" # gets rid of the % at the end, don't know why
 	tput cnorm # retore the cursor
 	return 0
 }
@@ -66,6 +65,15 @@ cat << EOF
  ------------    ----   ----    ----   ----    ----------    ----------------
 
 			- Initializing environment -
+
+
+  If you spot bugs, feel free to report them at :
+
+   ________________________________________________
+  |                                                |
+  |   https://github.com/JulienMasgonty/i3-setup   |
+  |                                                |
+   ------------------------------------------------
 
 EOF
 

@@ -1,5 +1,7 @@
 # I3-Setup
 
+/!\ This project is currently in writing, and wasn't properly tested yet ! /!\
+
 This is just my own configurations for my personnal setup
 
 Feel free to use it if you want, but make sure to review the `init.sh` script, as well as each tool's dedicated folder and it's config files, if you do, as it might install or setup stuff you might not want.
