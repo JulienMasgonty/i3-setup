@@ -95,7 +95,9 @@ echo "  ┏ Installing general use apt packages..."
 	feh \
 	git \
 	btop \
-	curl) & spin \
+	curl \
+	wget \
+	build-essential) & spin \
 	"  ┗━━━" \
 	"Waiting for installation to finish" \
 	"Done" \
@@ -127,15 +129,15 @@ echo "  ┃"
 	"dependencies installed successfully" \
 	"failed to install dependencies"
 echo "  ┃" 
-(mkdir -p $HOME/Workspace/Forks & \
-	git clone git@github.com:JulienMasgonty/ghostty.git ~/Workspace/Forks) & spin \
+(mkdir -p $HOME/Workspace/Forks \
+	&& git clone git@github.com:JulienMasgonty/ghostty.git ~/Workspace/Forks) & spin \
 	"  ┣━━━" \
 	"Iownloading ghostty..." \
 	"ghostty downloaded" \
 	"failed to download ghostty"
 echo "  ┃" 
-(cd $HOME/Workspace/Forks/ghostty &  \
-	zig build -p $HOME/.local -Doptimize=ReleaseFast) & spin \
+(cd $HOME/Workspace/Forks/ghostty \
+	&& zig build -p $HOME/.local -Doptimize=ReleaseFast) & spin \
 	"  ┣━━━" \
 	"Building ghostty from source..." \
 	"built ghostty from source" \
@@ -165,6 +167,39 @@ echo "  ┃"
 	"Extracting neovim..." \
 	"Successfully extracted neovim into /opt/nvim" \
 	"Error extracting neovim"
+echo "  ┃" 
+echo "  ┣━━━ Setting up dependencies for Lazy package manager"
+echo "  ┃     ┃" 
+(apt install lua5.4 liblua5.4-dev lua5.1 liblua5.1-dev) & spin \ # keeping lua 5.1 for now as Lazy requires it
+	"  ┃     ┣━ " \
+	"Installing lua..." \
+	"Successfully installed lua" \
+	"Error installing lua" \
+echo "  ┃     ┃" 
+echo "  ┃     ┣━ Setting up luarocks" 
+echo "  ┃     ┃" 
+(wget -P $(pwd)/_temp/ https://luarocks.org/releases/luarocks-3.11.1.tar.gz) \
+	& spin \
+	"  ┃     ┃     ┣━"
+	"Downloading luarocks .tar archive" \
+	"Successfully downloaded luarocks .tar archive" \
+	"Error downloading luarocks .tar archive"
+echo "  ┃     ┃     ┃" 
+(cd $(pwd)/_temp && tar zxpf luarocks-3.11.1.tar.gz) \
+	& spin \
+	"  ┃     ┃     ┣━" \
+	"Extracting luarocks-3.11.1.tar.gz" \
+	"Successfully extracted luarocks-3.11.1.tar.gz" \
+	"Error extracting luarocs-3.11.1.tar.gz"
+echo "  ┃     ┃     ┃"
+(./cd luarocks-3.11.1 && ./configure && make && make install) \
+	& spin \
+	"  ┃     ┃     ┗━"
+	"installing luarocks" \
+	"Successfully installed luarocks" \
+	"Error installing luarocks"
+echo "  ┃     ┃"
+echo "  ┃     ┗━━━ Done"
 echo "  ┃" 
 echo "  ┗━━━ Done"
 echo ""
