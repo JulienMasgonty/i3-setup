@@ -1,0 +1,24 @@
+[global]
+	monitor = 0
+	width = 300
+	origin = top-right
+	offset = (10, 50)
+	notification_limit = 3
+	progress_bar = true
+	indicate_hidden = true
+	frame_width = 1
+	frame_color = "#323232"
+	background = "#202020"
+	foreground = "#ffffff"
+	sort = urgency_descending
+	font = GeistMonoNerdFont 8
+	format = "<b>%a : %s</b>
+
+[urgency_low]
+	background = "#4a3a4f"
+	frame_color = "#765182"
+
+[urgency_critical]
+	background = "#631c30"
+	frame_color = "#a12b4c"
+

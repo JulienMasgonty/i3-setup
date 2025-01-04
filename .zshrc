@@ -107,3 +107,9 @@ export PATH=$PATH:/home/jmasg/.local/bin:/opt/nvim-linux64/bin
 export EDITOR=nvim
 export VISUAL=nvim
 
+alias python=python3
+alias vim=nvi
+
+alias python=python3
+alias vim=nvim
+

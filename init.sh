@@ -93,15 +93,45 @@ echo ""
 echo "  ┏ Installing general use apt packages..."
 (apt install -y \
 	feh \
+	xclip \
+	python3-pip \ # for some reason python3 came preinstalled but not pip ?
+	playerctl \
 	git \
 	btop \
 	curl \
 	wget \
-	build-essential) & spin \
+	build-essential \
+	libdbus-1-dev libdbus-glib-1-dev) & spin \
 	"  ┗━━━" \
 	"Waiting for installation to finish" \
 	"Done" \
 	"Error during installation"
+
+echo "  ┏ Installing the GeistMono NerdFont..."
+echo "  ┃"
+mkdir -p ~/.local/share/fonts
+echo "  ┣━━━ initializing ~/.local/share/fonts directory"
+echo "  ┃"
+(wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/GeistMono.zip) & spin \
+	"  ┣━━━" \
+	"Downloading GeistMono.zip from github..." \
+	"GeistMono.zip downloaded successfully" \
+	"failed to download GeistMono"
+echo "  ┃"
+cd ~/.local/share/fonts
+(unzip GeistMono.zip && rm GeistMono.zip) & spin \
+	"  ┣━━━" \
+	"Extracting archive..." \
+	"Archive extracted successfully" \
+	"failed to extract archive"
+echo "  ┃"
+(fc-cache -f) & spin \
+	"  ┣━━━" \
+	"Regenerating fc-cache ..." \
+	"fc-cache regenerated successfully" \
+	"failed to regenerate fc-cache"
+echo "  ┃"
+echo "  ┗━━━ Done"
 
 
 # -- Polybar
@@ -219,11 +249,15 @@ echo "  ┣━━━ Purging default files"
 rm -rf $HOME/.config/i3 \
 	$HOME/.config/ghostty \
 	$HOME/.config/polybar \
+	$HOME/.config/nvim \
+	$HOME/.config/dunst \
 	$HOME/_scripts/* \
 	$HOME/.zshrc
 echo "  ┃     ┣━ $HOME/.config/.i3"
 echo "  ┃     ┣━ $HOME/.config/ghostty"
 echo "  ┃     ┣━ $HOME/.config/polybar"
+echo "  ┃     ┣━ $HOME/.config/nvim"
+echo "  ┃     ┣━ $HOME/.config/dunst"
 echo "  ┃     ┣━ $HOME/_scripts/*"
 echo "  ┃     ┗━ $HOME/.zshrc"
 echo "  ┃" 
@@ -257,6 +291,9 @@ echo ""
 
 echo "  Reloading i3 configuration"
 i3-msg reload
+
+echo "  Reloading dunst"
+killall dunst;notify-send "Dunst reloaded !"
 
 echo "  All done, enjoy ! (⌐■_■)"
 echo ""

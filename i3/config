@@ -212,5 +212,10 @@ exec_always --no-startup-id xrandr \
 # exec polybar
 exec_always --no-startup-id $HOME/_scripts/launch-polybar.sh
 
+# Setup keyboard layouts
+exec_always "setxkbmap -model pc105 fr,us -variant , -option -option grp:alt_space_toggle"
+
 # styling
 for_window[class="^.*"] border pixel 0
+gaps inner 8px
+smart_gaps on
