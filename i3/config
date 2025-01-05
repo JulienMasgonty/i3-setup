@@ -51,7 +51,7 @@ bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+A kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -219,3 +219,5 @@ exec_always "setxkbmap -model pc105 fr,us -variant , -option -option grp:alt_spa
 for_window[class="^.*"] border pixel 0
 gaps inner 8px
 smart_gaps on
+
+bindsym $Mod+d exec rofi -show run

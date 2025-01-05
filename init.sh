@@ -110,26 +110,26 @@ echo "  ┏ Installing general use apt packages..."
 echo "  ┏ Installing the GeistMono NerdFont..."
 echo "  ┃"
 mkdir -p ~/.local/share/fonts
-echo "  ┣━━━ initializing ~/.local/share/fonts directory"
+echo "  ┣━━━ Initializing ~/.local/share/fonts directory"
 echo "  ┃"
 (wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/GeistMono.zip) & spin \
 	"  ┣━━━" \
 	"Downloading GeistMono.zip from github..." \
 	"GeistMono.zip downloaded successfully" \
-	"failed to download GeistMono"
+	"Failed to download GeistMono"
 echo "  ┃"
 cd ~/.local/share/fonts
 (unzip GeistMono.zip && rm GeistMono.zip) & spin \
 	"  ┣━━━" \
 	"Extracting archive..." \
 	"Archive extracted successfully" \
-	"failed to extract archive"
+	"Failed to extract archive"
 echo "  ┃"
 (fc-cache -f) & spin \
 	"  ┣━━━" \
 	"Regenerating fc-cache ..." \
-	"fc-cache regenerated successfully" \
-	"failed to regenerate fc-cache"
+	"Fc-cache regenerated successfully" \
+	"Failed to regenerate fc-cache"
 echo "  ┃"
 echo "  ┗━━━ Done"
 
@@ -138,10 +138,40 @@ echo "  ┗━━━ Done"
 echo "  ┏ Installing polybar" 
 echo "  ┃" 
 (apt install -y polybar) & spin \
-	"  ┗━━━" \
-	"Installing polybar..." \
-	"polybar installed successfully" \
-	"failed to install polybar"
+	"  ┣━━━" \
+	"Installing polybar using apt..." \
+	"Polybar installed successfully" \
+	"Failed to install polybar"
+echo "  ┃" 
+echo "  ┣━━━ Installing zscroll (required by the spotify module)"
+echo "  ┃" 
+(cd $(pwd)/_temp && git clone https://github.com/noctuid/zscroll) & spin \
+	"  ┃     ┣━━━" \
+	"Downloading zscroll..." \
+	"Zscroll successfully downloaded" \
+	"Failed to download zscroll"
+echo "  ┃     ┃"
+(cd zscroll && python3 setup.py install) & spin \
+	"  ┃     ┣━━━" \
+	"Installing zscroll..." \
+	"Zscroll successfully installed" \
+	"Failed to install zscroll"
+echo "  ┃     ┃"
+echo "  ┃     ┗━━━ cleaning no longer required files"
+(cd .. && rm -rf zscroll)
+echo "  ┃          ┃"
+echo "  ┃          ┗━ $(pwd)/_temp/zscroll"
+echo "  ┃"
+echo "  ┗━━━ Done"
+
+
+# -- Rofi
+echo "  ┏ Installing rofi"
+(apt install rofi) & spin \
+	"  ┣━━━" \
+	"Installing rofi using apt..." \
+	"Rofi installed successfully" \
+	"Failed to install rofi"
 
 
 # -- Ghostty
@@ -150,28 +180,28 @@ echo "  ┃"
 (snap install zig --classic --beta) & spin \
 	"  ┣━━━" \
 	"Installing zig..." \
-	"zig installed successfully" \
-	"failed to install zig"
+	"Zig installed successfully" \
+	"Failed to install zig"
 echo "  ┃" 
 (sudo apt install -y libgtk-4-dev libadwaita-1-dev) & spin \
 	"  ┣━━━" \
 	"Installing dependencies..." \
-	"dependencies installed successfully" \
-	"failed to install dependencies"
+	"Dependencies installed successfully" \
+	"Failed to install dependencies"
 echo "  ┃" 
 (mkdir -p $HOME/Workspace/Forks \
 	&& git clone git@github.com:JulienMasgonty/ghostty.git ~/Workspace/Forks) & spin \
 	"  ┣━━━" \
 	"Iownloading ghostty..." \
-	"ghostty downloaded" \
-	"failed to download ghostty"
+	"Ghostty downloaded" \
+	"Failed to download ghostty"
 echo "  ┃" 
 (cd $HOME/Workspace/Forks/ghostty \
 	&& zig build -p $HOME/.local -Doptimize=ReleaseFast) & spin \
 	"  ┣━━━" \
 	"Building ghostty from source..." \
-	"built ghostty from source" \
-	"error building ghostty from source"
+	"Built ghostty from source" \
+	"Error building ghostty from source"
 echo "  ┃" 
 echo "  ┗━━━ Done"
 echo ""
@@ -190,6 +220,7 @@ echo "  ┃"
 echo "  ┃" 
 echo "  ┣━━━ Purging existing neovim installation"
 sudo rm -rf /opt/nvim
+echo "  ┃     ┃" 
 echo "  ┃     ┗━ /opt/nvim"
 echo "  ┃" 
 (sudo tar -C /opt -xzf nvim-linux64.tar.gz) & spin \
@@ -251,6 +282,7 @@ rm -rf $HOME/.config/i3 \
 	$HOME/.config/polybar \
 	$HOME/.config/nvim \
 	$HOME/.config/dunst \
+	$HOME/.config/rofi
 	$HOME/_scripts/* \
 	$HOME/.zshrc
 echo "  ┃     ┣━ $HOME/.config/.i3"
@@ -258,6 +290,7 @@ echo "  ┃     ┣━ $HOME/.config/ghostty"
 echo "  ┃     ┣━ $HOME/.config/polybar"
 echo "  ┃     ┣━ $HOME/.config/nvim"
 echo "  ┃     ┣━ $HOME/.config/dunst"
+echo "  ┃     ┣━ $HOME/.config/rofi"
 echo "  ┃     ┣━ $HOME/_scripts/*"
 echo "  ┃     ┗━ $HOME/.zshrc"
 echo "  ┃" 
