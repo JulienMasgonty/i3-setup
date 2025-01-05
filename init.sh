@@ -88,6 +88,63 @@ printf "$firstline\n" > $logfile
 printf "$firstline\n" > $errfile
 
 
+# -- Config files
+# TODO : keep track of symlinks to create in a dedicated file and refactor this
+echo "  ┏ Setting up symlinks to configuration files..."
+echo "  ┃" 
+echo "  ┣━━━ Initialising directories"
+mkdir -p $HOME/.config/
+mkdir -p $HOME/_scripts
+echo "  ┃     ┣━ Created $HOME/.config/"
+echo "  ┃     ┗━ Created $HOME/_scripts"
+echo "  ┃" 
+echo "  ┣━━━ Purging default files"
+rm -rf $HOME/.config/i3 \
+	$HOME/.config/ghostty \
+	$HOME/.config/polybar \
+	$HOME/.config/nvim \
+	$HOME/.config/dunst \
+	$HOME/.config/rofi
+	$HOME/_scripts/* \
+	$HOME/.zshrc
+echo "  ┃     ┣━ $HOME/.config/.i3"
+echo "  ┃     ┣━ $HOME/.config/ghostty"
+echo "  ┃     ┣━ $HOME/.config/polybar"
+echo "  ┃     ┣━ $HOME/.config/nvim"
+echo "  ┃     ┣━ $HOME/.config/dunst"
+echo "  ┃     ┣━ $HOME/.config/rofi"
+echo "  ┃     ┣━ $HOME/_scripts/*"
+echo "  ┃     ┗━ $HOME/.zshrc"
+echo "  ┃" 
+echo "  ┣━━━ Setting i3 config files" 
+ln -s $(pwd)/i3 $HOME/.config/i3
+echo "  ┃     ┗━ $(pwd)/i3 -> $HOME/.config/i3"
+echo "  ┃" 
+echo "  ┣━━━ Setting ghostty config files" 
+ln -s $(pwd)/ghostty $HOME/.config/ghostty
+echo "  ┃     ┗━ $(pwd)/ghostty -> $HOME/.config/ghostty"
+echo "  ┃" 
+echo "  ┣━━━ Setting polybar config files" 
+ln -s $(pwd)/ghostty $HOME/.config/ghostty
+echo "  ┃     ┣━ $(pwd)/polybar -> $HOME/.config/polybar"
+echo "  ┃" 
+echo "  ┣━━━ Setting neovim config files" 
+ln -s $(pwd)/ghostty $HOME/.config/ghostty
+echo "  ┃     ┣━ $(pwd)/nvim -> $HOME/.config/nvim"
+echo "  ┃" 
+echo "  ┣━━━ Setting .zshrc" 
+ln -s $(pwd)/.zshrc $HOME/.zshrc
+echo "  ┃     ┗━ $(pwd)/.zshrc -> $HOME/.zshrc"
+echo "  ┃" 
+echo "  ┣━━━ Setting scripts" 
+chmod a+x $(pwd)/_scripts/*.sh
+ln -s $(pwd)/_scripts $HOME/_scripts
+echo "  ┃     ┗━ $(pwd)/_scripts -> $HOME/_scripts"
+echo "  ┃" 
+echo "  ┗━━━ Done"
+echo ""
+
+
 # -- General use apt packages
 echo ""
 echo "  ┏ Installing general use apt packages..."
@@ -131,6 +188,44 @@ echo "  ┃"
 	"Fc-cache regenerated successfully" \
 	"Failed to regenerate fc-cache"
 echo "  ┃"
+echo "  ┗━━━ Done"
+
+
+# -- Zsh
+echo "  ┏ Setting up zsh" 
+echo "  ┃" 
+(apt install zsh) & spin \
+	"  ┣━━━" \
+    "Installing zsh..." \
+    "Successfully installing zsh" \
+    "Error installing zsh"
+echo "  ┃" 
+(yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)") \
+    & spin \
+	"  ┣━━━" \
+    "Installing oh-my-zsh..." \
+    "Successfully installing oh-my-zsh" \
+    "Error installing oh-my-zsh"
+echo "  ┃" 
+echo "  ┗━━━ Done"
+    
+
+# -- Nvm
+echo "  ┏ Installing nvm" 
+echo "  ┃" 
+(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash) \
+    & spin \
+	"  ┣━━━" \
+    "Downloading nvm..." \
+    "Successfully downloaded nvm" \
+    "Error installing nvm"
+echo "  ┃" 
+echo "  ┃ Sourcing .zshrc"
+source $HOME/.zshrc
+echo "  ┃" 
+echo "  ┣━━━ Defining npm version to lts"
+nvm install stable
+echo "  ┃" 
 echo "  ┗━━━ Done"
 
 
@@ -266,62 +361,7 @@ echo "  ┗━━━ Done"
 echo ""
 
 
-# -- Config files
-# TODO : keep track of symlinks to create in a dedicated file and refactor this
-echo "  ┏ Setting up symlinks to configuration files..."
-echo "  ┃" 
-echo "  ┣━━━ Initialising directories"
-mkdir -p $HOME/.config/
-mkdir -p $HOME/_scripts
-echo "  ┃     ┣━ Created $HOME/.config/"
-echo "  ┃     ┗━ Created $HOME/_scripts"
-echo "  ┃" 
-echo "  ┣━━━ Purging default files"
-rm -rf $HOME/.config/i3 \
-	$HOME/.config/ghostty \
-	$HOME/.config/polybar \
-	$HOME/.config/nvim \
-	$HOME/.config/dunst \
-	$HOME/.config/rofi
-	$HOME/_scripts/* \
-	$HOME/.zshrc
-echo "  ┃     ┣━ $HOME/.config/.i3"
-echo "  ┃     ┣━ $HOME/.config/ghostty"
-echo "  ┃     ┣━ $HOME/.config/polybar"
-echo "  ┃     ┣━ $HOME/.config/nvim"
-echo "  ┃     ┣━ $HOME/.config/dunst"
-echo "  ┃     ┣━ $HOME/.config/rofi"
-echo "  ┃     ┣━ $HOME/_scripts/*"
-echo "  ┃     ┗━ $HOME/.zshrc"
-echo "  ┃" 
-echo "  ┣━━━ Setting i3 config files" 
-ln -s $(pwd)/i3 $HOME/.config/i3
-echo "  ┃     ┗━ $(pwd)/i3 -> $HOME/.config/i3"
-echo "  ┃" 
-echo "  ┣━━━ Setting ghostty config files" 
-ln -s $(pwd)/ghostty $HOME/.config/ghostty
-echo "  ┃     ┗━ $(pwd)/ghostty -> $HOME/.config/ghostty"
-echo "  ┃" 
-echo "  ┣━━━ Setting polybar config files" 
-ln -s $(pwd)/ghostty $HOME/.config/ghostty
-echo "  ┃     ┣━ $(pwd)/polybar -> $HOME/.config/polybar"
-echo "  ┃" 
-echo "  ┣━━━ Setting neovim config files" 
-ln -s $(pwd)/ghostty $HOME/.config/ghostty
-echo "  ┃     ┣━ $(pwd)/nvim -> $HOME/.config/nvim"
-echo "  ┃" 
-echo "  ┣━━━ Setting .zshrc" 
-ln -s $(pwd)/.zshrc $HOME/.zshrc
-echo "  ┃     ┗━ $(pwd)/.zshrc -> $HOME/.zshrc"
-echo "  ┃" 
-echo "  ┣━━━ Setting scripts" 
-chmod a+x $(pwd)/_scripts/*.sh
-ln -s $(pwd)/_scripts $HOME/_scripts
-echo "  ┃     ┗━ $(pwd)/_scripts -> $HOME/_scripts"
-echo "  ┃" 
-echo "  ┗━━━ Done"
-echo ""
-
+# -- reloading configs
 echo "  Reloading i3 configuration"
 i3-msg reload
 
