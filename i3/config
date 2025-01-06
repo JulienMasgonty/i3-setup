@@ -154,37 +154,37 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 1 px or 1 ppt
-        bindsym k resize grow height 1 px or 1 ppt
-        bindsym l resize shrink height 10 px or 1 ppt
-        bindsym m resize grow width 1 px or 1 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym j resize shrink width 1 px or 1 ppt
+    bindsym k resize grow height 1 px or 1 ppt
+    bindsym l resize shrink height 10 px or 1 ppt
+    bindsym m resize grow width 1 px or 1 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 1 px or 1 ppt
-        bindsym Down resize grow height 1 px or 1 ppt
-        bindsym Up resize shrink height 1 px or 1 ppt
-        bindsym Right resize grow width 1 px or 1 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 1 px or 1 ppt
+    bindsym Down resize grow height 1 px or 1 ppt
+    bindsym Up resize shrink height 1 px or 1 ppt
+    bindsym Right resize grow width 1 px or 1 ppt
 
-	bindsym Shift+Left resize shrink width 10px or 10 ppt
-	bindsym Shift+Down resize grow height 10px or 10 ppt
-	bindsym Shift+Up resize shrink height 10px or 10 ppt
-	bindsym Shift+Right resize grow width 10px or 10 ppt
+    bindsym Shift+Left resize shrink width 10px or 10 ppt
+    bindsym Shift+Down resize grow height 10px or 10 ppt
+    bindsym Shift+Up resize shrink height 10px or 10 ppt
+    bindsym Shift+Right resize grow width 10px or 10 ppt
 
-	bindsym Shift+j resize shrink width 10px or 10 ppt
-	bindsym Shift+k resize grow height 10px or 10 ppt
-	bindsym Shift+l resize shrink height 10px or 10 ppt
-	bindsym Shift+m resize grow width 10px or 10 ppt
+    bindsym Shift+j resize shrink width 10px or 10 ppt
+    bindsym Shift+k resize grow height 10px or 10 ppt
+    bindsym Shift+l resize shrink height 10px or 10 ppt
+    bindsym Shift+m resize grow width 10px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -216,8 +216,16 @@ exec_always --no-startup-id $HOME/_scripts/launch-polybar.sh
 exec_always "setxkbmap -model pc105 fr,us -variant , -option -option grp:alt_space_toggle"
 
 # styling
-for_window[class="^.*"] border pixel 0
+for_window[class="^.*"] border pixel 2
 gaps inner 8px
 smart_gaps on
 
 bindsym $Mod+d exec rofi -show run
+
+# Colors
+# class                 border  bckg.   text    ind.      chld.bdr.
+client.focused          #FFC799 #101010 #ffffff #FFC799   #FFC799
+client.focused_inactive #FFC799 #101010 #ffffff #FFC799   #101010
+client.unfocused        #FFC799 #101010 #ffffff #FFC799   #101010
+client.urgent           #FFC799 #101010 #ffffff #FFC799   #101010
+client.placeholder      #FFC799 #101010 #ffffff #FFC799   #101010
