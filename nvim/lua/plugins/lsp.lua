@@ -96,6 +96,18 @@ return {
                         },
                         capabilities = capabilities
                     }
+                end,
+                ["cssls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.cssls.setup {
+                        settings = {
+                            css = {
+                                lint = {
+                                    unknownAtRules = "ignore"
+                                }
+                            }
+                        }
+                    }
                 end
             }
         }
