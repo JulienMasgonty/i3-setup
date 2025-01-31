@@ -104,7 +104,8 @@ rm -rf $HOME/.config/i3 \
 	$HOME/.config/polybar \
 	$HOME/.config/nvim \
 	$HOME/.config/dunst \
-	$HOME/.config/rofi
+	$HOME/.config/rofi \
+    $HOME/.config/picom.conf \
 	$HOME/_scripts/* \
 	$HOME/.zshrc
 echo "  ┃     ┣━ $HOME/.config/.i3"
@@ -113,6 +114,7 @@ echo "  ┃     ┣━ $HOME/.config/polybar"
 echo "  ┃     ┣━ $HOME/.config/nvim"
 echo "  ┃     ┣━ $HOME/.config/dunst"
 echo "  ┃     ┣━ $HOME/.config/rofi"
+echo "  ┃     ┣━ $HOME/.config/picom.conf"
 echo "  ┃     ┣━ $HOME/_scripts/*"
 echo "  ┃     ┗━ $HOME/.zshrc"
 echo "  ┃" 
@@ -131,6 +133,10 @@ echo "  ┃"
 echo "  ┣━━━ Setting neovim config files" 
 ln -s $(pwd)/ghostty $HOME/.config/ghostty
 echo "  ┃     ┣━ $(pwd)/nvim -> $HOME/.config/nvim"
+echo "  ┃" 
+echo "  ┣━━━ Setting picom.conf" 
+ln -s $(pwd)/.zshrc $HOME/.zshrc
+echo "  ┃     ┗━ $(pwd)/picom.conf -> $HOME/.config/picom.conf"
 echo "  ┃" 
 echo "  ┣━━━ Setting .zshrc" 
 ln -s $(pwd)/.zshrc $HOME/.zshrc

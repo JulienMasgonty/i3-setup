@@ -65,7 +65,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "eslint",
-                -- "angularls",
+                "angularls",
                 "emmet_ls",
                 "ts_ls",
                 "html",
@@ -76,8 +76,7 @@ return {
                 "helm_ls",
                 "sqlls",
                 "clangd",
-                "bashls",
-                "zls"
+                "bashls"
             },
             handlers = {
                 function(server_name)
