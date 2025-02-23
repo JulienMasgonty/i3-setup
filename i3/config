@@ -197,12 +197,13 @@ bindsym $mod+r mode "resize"
 # lock the session
 bindsym $mod+l exec i3lock -n -t -i ~/Pictures/Wallpapers/default.png
 
-# does this even work ? (supposed to delay the autolock and screen turning off and stuff, but it might need some debugging)
-exec_always --no-startup-id xset dpms 0 0 7200 & 
+# disable screen saver and session lock 
+exec_always --no-startup-id xset dpms 0 0 0 
+exec_always --no-startup-id xset s off
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -t -i ~/Pictures/Wallpapers/default.png
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -t -i -f -k ~/Pictures/Wallpapers/default.png
 
 # set wallpaper
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/default.png
@@ -242,3 +243,7 @@ bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(d
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+# Send window to scratchpad
+bindsym $mod+Shift+f move scratchpad
+bindsym $mod+Shift+s scratchpad show

@@ -1,36 +1,31 @@
+-- line numbers
 vim.opt.nu = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
--- reenable this to combine nvim and system clipboard
--- vim.opt.clipboard = 'unnamedplus'
-
-vim.opt.cursorline = true
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- tabs
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.smartindent = true
+vim.smartindent = true
 
-vim.opt.wrap = false
-
+-- backups & undo
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- search
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
-
--- mainly needed for the markdown preview feature of obsidian.nvim
--- vim.opt.conceallevel = 1
+-- misc
+vim.opt.cursorline = true -- highlights cursor line
+vim.opt.wrap = false -- do not wrap the line after the max line length
+vim.opt.termguicolors = true -- nice colors
+vim.opt.scrolloff = 8 -- keep 8 lines at the bottom
+vim.opt.signcolumn = "yes" -- enable sign column
+vim.opt.isfname:append("@-@") -- to handle files with @ in them
+vim.opt.updatetime = 50 -- sets the update time to 50ms
+vim.opt.colorcolumn = "80" -- color the column 80 as an indication of reasonable line lengh

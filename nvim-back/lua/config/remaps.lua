@@ -45,3 +45,6 @@ vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>]])
 
 -- makes executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- open copilot chat
+vim.keymap.set("n", "<leader>gc", "<cmd>lua require('CopilotChat').open()<CR>", { silent = true })

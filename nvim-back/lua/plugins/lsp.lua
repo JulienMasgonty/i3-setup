@@ -8,7 +8,7 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
-        "l3MON4D3/LuaSnip",
+        --"l3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "petertriho/cmp-git"
     },
@@ -17,11 +17,11 @@ return {
 
         local cmp = require("cmp")
         cmp.setup({
-            snippet = {
-                expand = function(args)
-                    require("luasnip").lsp_expand(args.body)
-                end
-            },
+            --snippet = {
+            --    expand = function(args)
+            --        require("luasnip").lsp_expand(args.body)
+            --    end
+            --},
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered()
@@ -35,7 +35,7 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                { name = "luasnip" }
+            --    { name = "luasnip" }
             }, {
                 { name = "buffer" }
             })
@@ -65,7 +65,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "eslint",
-                "angularls",
+                -- "angularls",
                 "emmet_ls",
                 "ts_ls",
                 "html",
@@ -76,7 +76,8 @@ return {
                 "helm_ls",
                 "sqlls",
                 "clangd",
-                "bashls"
+                "bashls",
+                "zls"
             },
             handlers = {
                 function(server_name)

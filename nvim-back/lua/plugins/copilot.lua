@@ -2,7 +2,7 @@ return {
     {
         "github/copilot.vim",
         config = function()
-          vim.g.copilot_filetypes = { zig = false }
+            vim.g.copilot_filetypes = { zig = false }
         end
     },
     {
