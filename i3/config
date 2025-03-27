@@ -229,11 +229,11 @@ bindsym $Mod+d exec rofi -show run
 
 # Colors
 # class                 border  bckg.   text    ind.      chld.bdr.
-client.focused          #FFC799 #101010 #ffffff #FFC799   #FFC799
-client.focused_inactive #FFC799 #101010 #ffffff #FFC799   #101010
-client.unfocused        #FFC799 #101010 #ffffff #FFC799   #101010
-client.urgent           #FFC799 #101010 #ffffff #FFC799   #101010
-client.placeholder      #FFC799 #101010 #ffffff #FFC799   #101010
+client.focused          #101010 #101010 #ffffff #6A5275   #6A5275
+client.focused_inactive #101010 #101010 #ffffff #101010   #101010
+client.unfocused        #101010 #101010 #ffffff #101010   #101010
+client.urgent           #101010 #101010 #ffffff #101010   #101010
+client.placeholder      #101010 #101010 #ffffff #101010   #101010
 
 # Screenshot
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
