@@ -23,6 +23,9 @@ return {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
           }
+        },
+        defaults = {
+          file_ignore_pattern = { "node_modules/*", ".git/*" }
         }
       })
       require("telescope").load_extension("ui-select")

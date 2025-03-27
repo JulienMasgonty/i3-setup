@@ -146,5 +146,6 @@ return {
         end,
       },
     })
+    vim.g.zig_fmt_autosave = 0 -- Disable zig's annoying autoformating
   end,
 }

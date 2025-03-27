@@ -36,7 +36,6 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 ---- capital Q is the ninth circle of hell
 vim.keymap.set("n", "Q", "<nop>")
 
-
 ---- builds a substitution string around the highlited term
 vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/g/<Left><Left>]])
 

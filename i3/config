@@ -222,8 +222,8 @@ exec_always "setxkbmap -model pc105 fr,us -variant , -option -option grp:alt_spa
 
 # styling
 for_window[class="^.*"] border pixel 2
-gaps inner 8px
-smart_gaps on
+# gaps inner 8px
+# smart_gaps on
 
 bindsym $Mod+d exec rofi -show run
 
