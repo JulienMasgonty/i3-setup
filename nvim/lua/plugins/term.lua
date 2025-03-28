@@ -51,5 +51,7 @@ local toggle_terminal = function()
 end
 
 vim.api.nvim_create_user_command("ToggleTerm", toggle_terminal, {})
-vim.keymap.set({ "n", "t" }, "<space>tt", toggle_terminal)
+vim.keymap.set("n", "<space>tt", toggle_terminal)
+vim.keymap.set("t", "<Esc><Esc>", toggle_terminal, { noremap = true, silent = true })
 
+return {}
