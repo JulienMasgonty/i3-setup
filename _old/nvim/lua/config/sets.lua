@@ -19,6 +19,13 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+-- folds
+vim.opt.fillchars = { fold = " " }
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+--vim.g.markdown_folding = 1 -- enable markdown markdown_fold
+
 
 -- misc
 vim.opt.cursorline = true -- highlights cursor line

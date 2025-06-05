@@ -13,6 +13,7 @@ return {
     "rafamadriz/friendly-snippets",
     "petertriho/cmp-git",
     "onsails/lspkind.nvim",
+    "davidosomething/format-ts-errors.nvim",
   },
   config = function()
     require("mason").setup()
@@ -142,6 +143,7 @@ return {
                 },
               },
             },
+            capabilities = capabilities,
           })
         end,
       },

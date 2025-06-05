@@ -1,19 +1,18 @@
 -- GLOBAL
-
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
----- Opens netrw
+---- Open netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 ---- Move highlighted lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
----- Cursor stays in place when appending following line to the current line
+---- Cursor stays in place when appending following line to current line
 vim.keymap.set("n", "J", "mzJ`z")
 
----- Jump half page but cursor stays in the middle of the screen
+---- Cursor stays in the middle of the screen when jumping half page
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
@@ -21,39 +20,43 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
----- send to void register
+---- Send to void register
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
----- paste and send highlighted word to void register
+---- Send highlited term to void register then paste
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
----- copy to system clipboard
+---- Copy to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
----- capital Q is the ninth circle of hell
+---- Capital Q in the ninth circle of hell, don't go there
 vim.keymap.set("n", "Q", "<nop>")
 
----- builds a substitution string around the highlited term
-vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/g/<Left><Left>]])
+---- Builds a substitution string around the highlighted term
+vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>]])
 
----- make executable
+---- Make executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-
+-- Quickfix
+vim.keymap.set("n", "<C-j>", ":cnext<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", ":cprev<CR>", { silent = true })
 
 -- LSP
 
----- calls lsp format
+---- Calls lsp format
 vim.keymap.set("n", "<leader>f", function()
   vim.lsp.buf.format()
 end)
 
----- go to definition
+---- Go to definition
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 
----- code actions
+---- Code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 
+---- Display message in popup window (useful for long messages that go off screen)
+vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
