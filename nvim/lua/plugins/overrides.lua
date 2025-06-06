@@ -1,14 +1,29 @@
 return {
-  {
+  { -- snacks.nvim
     "folke/snacks.nvim",
-    ---@type snacks.Config
+    priority = 1000,
     opts = {
       explorer = {
-        layout = {
-          preset = "sidebar",
-          preview = true,
-          laout = { position = "right" },
+        layout = { preset = "sidebar", preview = true },
+      },
+      picker = {
+        layouts = {
+          sidebar = {
+            layout = {
+              position = "right",
+            },
+          },
         },
+      },
+    },
+  },
+
+  { -- lualine.nvim
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        component_separators = "",
+        section_separators = "",
       },
     },
   },
